@@ -5,7 +5,15 @@ from django.http import (
 from django.shortcuts import render
 from django.urls import reverse
 
-from .forms import NumberThingsForm
+from core.models import (
+    Place,
+    Storage,
+)
+
+from .forms import (
+    StorageAddressForm,
+    NumberThingsForm,
+)
 from .models import Thing
 
 
@@ -37,10 +45,25 @@ def get_things_count(request):
 
 
 def get_places(request):
-    url_for_redirect = request.build_absolute_uri(reverse('seasonal_keeping:box-cost',
-                                                          args=[1, ]))
-    return HttpResponseRedirect(url_for_redirect)
+    if request.method == 'POST':
+        storage_addresses_form = StorageAddressForm(request.POST)
+        if storage_addresses_form.is_valid():
+            storage_address = storage_addresses_form.cleaned_data['address']
+            place = Place.objects.get(address=storage_address)  # FIXME
+            url_for_redirect = (request
+                                .build_absolute_uri(
+                                    reverse('seasonal_keeping:box-cost',
+                                            args=[place.id, ])  # FIXME
+                                ))
+            return HttpResponseRedirect(url_for_redirect)
+    else:
+        storage_addresses_form = StorageAddressForm()
+
+    ctx = {
+        'form': storage_addresses_form,
+    }
+    return render(request, 'places.html', ctx)
 
 
-def display_box_cost(request, place_id):
-    return HttpResponse('Здесь будут стоимости хранения')
+def display_box_cost(request, storage_id):
+    pass

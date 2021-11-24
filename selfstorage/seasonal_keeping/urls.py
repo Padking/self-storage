@@ -8,5 +8,5 @@ urlpatterns = [
     path('', views.display_stuff, name='seasonal-keeping'),
     path('count-of-things/', views.get_things_count, name='things-count'),
     path('places/', views.get_places, name='storage-places'),
-    path('places/place/<int:place_id>/box-cost/', views.display_box_cost, name='box-cost'),
+    path('places/storage/<int:storage_id>/box-cost/', views.display_box_cost, name='box-cost'),
 ]
