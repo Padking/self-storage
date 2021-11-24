@@ -19,7 +19,7 @@ from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
 
-from selfstorage import views
+from core import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),

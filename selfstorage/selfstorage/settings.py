@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
     # Custom
     'box_rental.apps.BoxRentalConfig',
+    'core.apps.CoreConfig',
     'seasonal_keeping.apps.SeasonalKeepingConfig',
 ]
 

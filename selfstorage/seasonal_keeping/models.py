@@ -1,3 +1,5 @@
+from django.contrib.auth.models import User
+
 from django.db import models
 
 
@@ -7,6 +9,9 @@ class Thing(models.Model):
     max_storage_time = models.PositiveIntegerField('максимальное время хранения, сут.')
     storage_cost = models.DecimalField('стоимость за минимальное время хранения',
                                        max_digits=5, decimal_places=2)
+
+    owners = models.ManyToManyField(User, blank=True,
+                                    related_name='things')
 
     def __str__(self):
         return self.name
