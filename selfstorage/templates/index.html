@@ -1,5 +1,6 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
   <meta charset="utf-8">
@@ -10,22 +11,22 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="{% static 'img/favicon.png' %}" rel="icon">
+  <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
 </head>
 
@@ -35,15 +36,13 @@
   <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <h1 class="logo"><a href="index.html">Self-Storage</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      <h1 class="logo"><a href="/">Self-Storage</a></h1>
 
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="#about">Кто мы</a></li>
           <li><a class="nav-link scrollto" href="#services">Наши услуги</a></li>
-          <li><a class="nav-link scrollto" href="#portfolio">Арендовать бокс</a></li>
+          <li><a class="nav-link scrollto" href="#boxes">Арендовать бокс</a></li>
           <li><a class="nav-link scrollto" href="#storage">Ближайший склад</a></li>
           <li><a class="nav-link scrollto" href="#contact">Контакты</a></li>
         </ul>
@@ -59,7 +58,7 @@
       <h3>Добро пожаловать в <strong>SelfStorage</strong></h3>
       <h1>Аренда складов индивидуального хранения в Воронеже</h1>
       <h2>Выберите ближайший к вам склад и арендуйте бокс для хранения ваших вещей!</h2>
-      <a href="#contact" class="btn-get-started scrollto">Арендовать бокс</a>
+      <a href="#boxes" class="btn-get-started scrollto">Арендовать бокс</a>
     </div>
   </section><!-- End Hero -->
 
@@ -158,8 +157,8 @@
       </div>
     </section><!-- End Services Section -->
 
-    <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio">
+    <!-- ======= Boxes Section ======= -->
+    <section id="boxes" class="boxes">
       <div class="container">
 
         <div class="section-title">
@@ -169,7 +168,7 @@
 
         <div class="row">
           <div class="col-lg-12 d-flex justify-content-center">
-            <ul id="portfolio-flters">
+            <ul id="boxes-flters">
               <li data-filter="*" class="filter-active">Все</li>
               <li data-filter=".filter-cheap">Дешего и сердито</li>
               <li data-filter=".filter-biggest">Нужно много места</li>
@@ -178,84 +177,84 @@
           </div>
         </div>
 
-        <div class="row portfolio-container">
+        <div class="row boxes-container">
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-cheap">
-            <img src="assets/img/boxes/1-mini.png" class="img-fluid" alt="">
-            <div class="portfolio-info">
+          <div class="col-lg-4 col-md-6 boxes-item filter-cheap">
+            <img src="{% static 'img/boxes/1-mini.png' %}" class="img-fluid" alt="">
+            <div class="boxes-info">
               <h4>Мини</h4>
               <p>1 – 1 м²</p>
               <p>Высота: 1 м</p>
               <p>Цена: от <b>1200 руб/мес</b></p>
-              <a href="assets/img/boxes/1-mini.png" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+              <a href="{% static 'img/boxes/1-mini.png' %}" data-gallery="boxesGallery" class="boxes-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
+              <a href="boxes-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-cheap">
-            <img src="assets/img/boxes/2-standart.png" class="img-fluid" alt="">
-            <div class="portfolio-info">
+          <div class="col-lg-4 col-md-6 boxes-item filter-cheap">
+            <img src="{% static 'img/boxes/2-standart.png' %}" class="img-fluid" alt="">
+            <div class="boxes-info">
               <h4>Стандартные</h4>
               <p>1 – 5 м²</p>
               <p>Высота: от 2 м</p>
               <p>Цена: от <b>1760 руб/мес</b></p>
-              <a href="assets/img/boxes/2-standart.png" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+              <a href="{% static 'img/boxes/2-standart.png' %}" data-gallery="boxesGallery" class="boxes-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
+              <a href="boxes-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-biggest">
-            <img src="assets/img/boxes/3-big.png" class="img-fluid" alt="">
-            <div class="portfolio-info">
+          <div class="col-lg-4 col-md-6 boxes-item filter-biggest">
+            <img src="{% static 'img/boxes/3-big.png' %}" class="img-fluid" alt="">
+            <div class="boxes-info">
               <h4>Большие</h4>
               <p>5 – 10 м²</p>
               <p>Высота: 2 м</p>
               <p>Цена: от <b>8800 руб/мес</b></p>
-              <a href="assets/img/boxes/3-big.png" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+              <a href="{% static 'img/boxes/3-big.png' %}" data-gallery="boxesGallery" class="boxes-lightbox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
+              <a href="boxes-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-biggest">
-            <img src="assets/img/boxes/4-nodimensions.png" class="img-fluid" alt="">
-            <div class="portfolio-info">
+          <div class="col-lg-4 col-md-6 boxes-item filter-biggest">
+            <img src="{% static 'img/boxes/4-nodimensions.png' %}" class="img-fluid" alt="">
+            <div class="boxes-info">
               <h4>Безразмерные</h4>
               <p>От 10 м²</p>
               <p>До бесконечности</p>
               <p>Цена: <b>по запросу</b></p>
-              <a href="assets/img/boxes/4-nodimensions.png" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 2"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+              <a href="{% static 'img/boxes/4-nodimensions.png' %}" data-gallery="boxesGallery" class="boxes-lightbox preview-link" title="Card 2"><i class="bx bx-plus"></i></a>
+              <a href="boxes-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-cheap">
-            <img src="assets/img/boxes/5-oversized.png" class="img-fluid" alt="">
-            <div class="portfolio-info">
+          <div class="col-lg-4 col-md-6 boxes-item filter-cheap">
+            <img src="{% static 'img/boxes/5-oversized.png' %}" class="img-fluid" alt="">
+            <div class="boxes-info">
               <h4>Негабаритные</h4>
               <p>1,5 – 3 м²</p>
               <p>Высота: 1 м</p>
               <p>Цена: от <b>1800 руб/мес</b></p>
-              <a href="assets/img/boxes/5-oversized.png" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 2"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+              <a href="{% static 'img/boxes/5-oversized.png' %}" data-gallery="boxesGallery" class="boxes-lightbox preview-link" title="Web 2"><i class="bx bx-plus"></i></a>
+              <a href="boxes-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-special">
-            <img src="assets/img/boxes/6-antresol.png" class="img-fluid" alt="">
-            <div class="portfolio-info">
+          <div class="col-lg-4 col-md-6 boxes-item filter-special">
+            <img src="{% static 'img/boxes/6-antresol.png' %}" class="img-fluid" alt="">
+            <div class="boxes-info">
               <h4>Антресольные</h4>
               <p>1,5 – 2 м²</p>
               <p>Высота: 1 м</p>
               <p>Цена: от <b>1500 руб/мес</b></p>
-              <a href="assets/img/boxes/6-antresol.png" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+              <a href="{% static 'img/boxes/6-antresol.png' %}" data-gallery="boxesGallery" class="boxes-lightbox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
+              <a href="boxes-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
             </div>
           </div>
 
         </div>
 
       </div>
-    </section><!-- End Portfolio Section -->
+    </section><!-- End Boxes Section -->
 
     <!-- ======= Cta Section ======= -->
     <section id="cta" class="cta">
@@ -369,14 +368,13 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
 
   <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script src="{% static 'js/main.js' %}"></script>
 
   <!-- Livereload script for local development -->
   <script src="http://localhost:35729/livereload.js"></script>

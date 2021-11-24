@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 from environs import Env
@@ -133,7 +134,9 @@ MEDIA_URL = env('MEDIA_URL')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 STATIC_ROOT = BASE_DIR / env('STATIC_ROOT')
 
 STATIC_URL = env('STATIC_URL')
