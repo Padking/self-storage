@@ -17,7 +17,7 @@ class Storage(models.Model):
                                  primary_key=True,
                                  verbose_name='расположен по адресу')
     alias = models.CharField('запоминающееся название', max_length=128)
-    cost = models.DecimalField('стоимость аренды за 1 кв.м.',
+    cost = models.DecimalField('стоимость аренды, руб/кв.м.',
                                max_digits=5, decimal_places=2)
 
     def __str__(self):
