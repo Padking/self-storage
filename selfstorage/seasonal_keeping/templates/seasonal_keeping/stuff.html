@@ -25,13 +25,22 @@
 
     <div class="container">
       <div class="row">
-        {% for thing in stuff %}
-          <div class="col-md-3">
-            <a href="{% url 'seasonal_keeping:things-count' %}">
+        <form action="" method="post">
+          {% csrf_token %}
+          {% for thing in stuff %}
+            <div class="col-md-3">
               <img src="{{ thing.photo.image.url }}" alt="{{ thing.name }}" class="img-responsive">
-            </a>
-          </div>
-        {% endfor %}
+
+              <input type="checkbox"
+                     id="{{ thing.id }}"
+                     name="things_names"
+                     value="{{ thing.name }}">
+
+            </div>
+          {% endfor %}
+
+          <input type="submit" value="Далее">
+        </form>
       </div>
     </div>
 

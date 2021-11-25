@@ -1,6 +1,6 @@
-from django.contrib.auth.models import User
-
 from django.db import models
+
+from core.managers import DisplayCostQuerySet
 
 
 class Thing(models.Model):
@@ -10,8 +10,7 @@ class Thing(models.Model):
     storage_cost = models.DecimalField('стоимость за минимальное время хранения',
                                        max_digits=5, decimal_places=2)
 
-    owners = models.ManyToManyField(User, blank=True,
-                                    related_name='things')
+    objects = DisplayCostQuerySet.as_manager()
 
     def __str__(self):
         return self.name
