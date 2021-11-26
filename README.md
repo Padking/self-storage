@@ -71,7 +71,7 @@ python manage.py collectstatic --clear
 python manage.py loaddata ./box/fixtures/db_data.json
 ```
 
-6. Раскомментировать строчку [кода]()
+6. Раскомментировать строчку [кода](https://github.com/Padking/self-storage/blob/f32cbf4fa5930e150ed84a39eab8d4d61b9c1465/selfstorage/box/forms.py#L20)
 
 7. Запустить [сайт](http://127.0.0.1:8000/),
 
