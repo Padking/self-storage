@@ -8,9 +8,26 @@
 </head>
 <body>
 
-  <h1>
-    Здесь будет таблица с ценами
-  </h1>
+  <table border="1" class="table_sort" width="550">
+    <caption class="tables_caption"><b>Цены на хранение сезонных вещей</b></caption>
+    <thead>
+        <tr>
+            <th>Вещь</th>
+            <th>Стоимость аренды</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for thing, costs in things_map_costs.items %}
+        <tr>
+            <td rowspan="2">{{ thing }}</td>
+            <td>{{ costs | slice:"1" }}</td>
+        </tr>
+        <tr>
+            <td>{{ costs | slice:"2" }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
 
   <form action="" method="post">
     {% csrf_token %}

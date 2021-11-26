@@ -1,3 +1,5 @@
+from django.contrib.auth.models import User
+from django.core.management.utils import get_random_secret_key as get_random_password
 from django.http import (
     HttpResponse,
     HttpResponseRedirect,
@@ -5,12 +7,15 @@ from django.http import (
 from django.shortcuts import render
 from django.urls import reverse
 
-from ..models import (
+from random_username.generate import generate_username
+
+from box.models import (
     Place,
-    Thing
+    Order,
+    Thing,
 )
 
-from ..forms import (
+from box.forms import (
     NumberThingsForm,
     StorageAddressForm,
 )
@@ -19,7 +24,16 @@ from ..forms import (
 def get_thing_name(request):
     if request.method == 'POST':
         things_names = request.POST.getlist('things_names')
-        # Сохранить выбор П-ля (название вещи)
+        username = request.session.get('username')
+        user, _ = User.objects.get_or_create(username=username,
+                                             defaults={
+                                                 'password': get_random_password()
+                                             })
+        things_names_for_db_column = ','.join(things_names)
+        new_order = (Order.objects
+                     .create(things_names=things_names_for_db_column, tenant=user))
+
+        user.orders.add(new_order)
         url_for_redirect = (request
                             .build_absolute_uri(
                                 reverse('things-count')
@@ -31,6 +45,8 @@ def get_thing_name(request):
     ctx = {
         'stuff': things,
     }
+    random_username_for_anonymous = generate_username()[0]
+    request.session.setdefault('username', random_username_for_anonymous)
 
     return render(request, 'stuff.html', ctx)
 
@@ -40,7 +56,12 @@ def get_things_count(request):
         number_things_form = NumberThingsForm(request.POST)
         if number_things_form.is_valid():
             number_of_things = number_things_form.cleaned_data['number_of_things']
-            # Сохранить выбор П-ля (кол-во единиц вещей)
+            username = request.session.get('username')
+            user = User.objects.get(username=username)
+            # Взять последний заказ (потенциальный) П-ля
+            current_order = user.orders.last()
+            current_order.number_of_things = number_of_things
+            current_order.save()
             url_for_redirect = (request
                                 .build_absolute_uri(
                                     reverse('storage-places')
@@ -61,7 +82,11 @@ def get_places(request):
         storage_addresses_form = StorageAddressForm(request.POST)
         if storage_addresses_form.is_valid():
             storage_address = storage_addresses_form.cleaned_data['address']
-            # Сохранить выбор П-ля (адрес склада)
+            username = request.session.get('username')
+            user = User.objects.get(username=username)
+            current_order = user.orders.last()
+            current_order.storage_address = storage_address
+            current_order.save()
             place = Place.objects.get(address=storage_address)  # FIXME
             url_for_redirect = (request
                                 .build_absolute_uri(
@@ -89,10 +114,19 @@ def display_box_cost(request, storage_id):
                             ))
         return HttpResponseRedirect(url_for_redirect)
     else:
-        pass
+        username = request.session.get('username')
+        user = User.objects.get(username=username)
+        current_order = user.orders.last()
+        things_names = current_order.things_names.split(',')
+        selected_tenant_things = Thing.objects.filter(name__in=things_names)
+
+        costs = {}
+        for thing_name in things_names:
+            costs_ = selected_tenant_things.get_seasonal_keeping_costs(thing_name)
+            costs.update({thing_name: costs_})
 
     ctx = {
-        # 'form': ,
+        'things_map_costs': costs,
     }
 
     return render(request, 'box_cost.html', ctx)

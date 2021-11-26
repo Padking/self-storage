@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 from .managers import DisplayCostQuerySet
@@ -56,3 +57,13 @@ class Box(models.Model):
 
     def __str__(self):
         return f'Бокс №{self.id}'
+
+
+class Order(models.Model):
+    things_names = models.CharField('названия вещей', max_length=200)
+    number_of_things = models.PositiveIntegerField('кол-во единиц вещей', default=1)
+    storage_address = models.TextField('адрес склада',
+                                       default='ул. Манчестерская, д. 7, кв. 1')
+
+    tenant = models.ForeignKey(User, on_delete=models.CASCADE,
+                               related_name='orders')

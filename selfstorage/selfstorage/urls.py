@@ -34,8 +34,11 @@ seasonal_keeping_extra_patterns = [
     path('', seasonal_keeping.get_thing_name, name='seasonal-keeping'),
     path('count-of-things/', seasonal_keeping.get_things_count, name='things-count'),
     path('places/', seasonal_keeping.get_places, name='storage-places'),
-    path('places/storage/<int:storage_id>/box-cost/', seasonal_keeping.display_box_cost, name='box-cost'),
-    path('places/storage/<int:storage_id>/storage-period/', seasonal_keeping.get_storage_period, name='storage-period')
+    path('places/storage/<int:storage_id>/box-cost/',
+         seasonal_keeping.display_box_cost, name='box-cost'),
+
+    path('places/storage/<int:storage_id>/storage-period/',
+         seasonal_keeping.get_storage_period, name='storage-period')
 ]
 
 urlpatterns = [
