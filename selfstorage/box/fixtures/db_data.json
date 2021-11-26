@@ -1,0 +1,104 @@
+[
+{
+    "model": "box.thing",
+    "pk": 1,
+    "fields": {
+        "name": "Лыжи",
+        "min_storage_time": 7,
+        "max_storage_time": 180,
+        "storage_cost": "100.00"
+    }
+},
+{
+    "model": "box.thing",
+    "pk": 2,
+    "fields": {
+        "name": "Сноуборд",
+        "min_storage_time": 7,
+        "max_storage_time": 180,
+        "storage_cost": "100.00"
+    }
+},
+{
+    "model": "box.thing",
+    "pk": 3,
+    "fields": {
+        "name": "Велосипед",
+        "min_storage_time": 7,
+        "max_storage_time": 180,
+        "storage_cost": "150.00"
+    }
+},
+{
+    "model": "box.thing",
+    "pk": 4,
+    "fields": {
+        "name": "Колёса",
+        "min_storage_time": 30,
+        "max_storage_time": 180,
+        "storage_cost": "200.00"
+    }
+},
+{
+    "model": "box.photo",
+    "pk": 1,
+    "fields": {
+        "image": "skis.jpg"
+    }
+},
+{
+    "model": "box.photo",
+    "pk": 2,
+    "fields": {
+        "image": "snowboard.jpg"
+    }
+},
+{
+    "model": "box.photo",
+    "pk": 3,
+    "fields": {
+        "image": "bycycle.jpg"
+    }
+},
+{
+    "model": "box.photo",
+    "pk": 4,
+    "fields": {
+        "image": "wheels.jpg"
+    }
+},
+{
+    "model": "box.place",
+    "pk": 1,
+    "fields": {
+        "address": "ул. Манчестерская, д. 7, кв. 1",
+        "longitude": 39.1353,
+        "latitude": 51.682
+    }
+},
+{
+    "model": "box.place",
+    "pk": 2,
+    "fields": {
+        "address": "ул. Курсанта, д.8, кв. 2",
+        "longitude": 39.1873,
+        "latitude": 51.692
+    }
+},
+{
+    "model": "box.storage",
+    "pk": 1,
+    "fields": {
+        "alias": "МЮ",
+        "cost": "599.00"
+    }
+},
+{
+    "model": "box.storage",
+    "pk": 2,
+    "fields": {
+        "alias": "Курс",
+        "cost": "799.00"
+    }
+}
+]

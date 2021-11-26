@@ -44,7 +44,9 @@ pip-delete-this-directory.txt
 # Django:
 *.log
 local_settings.py
-media/
+# media/
+# static/
+# !**/static/
 *.sqlite3
 *.sqlite3-journal
 
@@ -128,5 +130,4 @@ __pypackages__/
 
 # Personal
 for_project/
-notes.txt
 .flake8

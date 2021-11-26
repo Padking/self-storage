@@ -19,13 +19,30 @@ from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
 
-from core import views
+from box.views import (
+    main_page,
+    box_rental,
+    seasonal_keeping,
+)
+
+
+box_rental_extra_patterns = [
+    path('', box_rental.display_rental_form, name='box-rental'),
+]
+
+seasonal_keeping_extra_patterns = [
+    path('', seasonal_keeping.get_thing_name, name='seasonal-keeping'),
+    path('count-of-things/', seasonal_keeping.get_things_count, name='things-count'),
+    path('places/', seasonal_keeping.get_places, name='storage-places'),
+    path('places/storage/<int:storage_id>/box-cost/', seasonal_keeping.display_box_cost, name='box-cost'),
+    path('places/storage/<int:storage_id>/storage-period/', seasonal_keeping.get_storage_period, name='storage-period')
+]
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index),
-    path('box-rental/', include('box_rental.urls')),
-    path('seasonal-keeping/', include('seasonal_keeping.urls')),
+    path('', main_page.index),
+    path('box-rental/', include(box_rental_extra_patterns)),
+    path('seasonal-keeping/', include(seasonal_keeping_extra_patterns)),
 ]
 
 if settings.DEBUG:

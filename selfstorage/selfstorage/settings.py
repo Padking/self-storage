@@ -45,9 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Custom
-    'box_rental.apps.BoxRentalConfig',
-    'core.apps.CoreConfig',
-    'seasonal_keeping.apps.SeasonalKeepingConfig',
+    'box.apps.BoxConfig',
 ]
 
 MIDDLEWARE = [
@@ -67,8 +65,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             BASE_DIR / 'templates',
-            BASE_DIR / 'box_rental' / 'templates' / 'box_rental',
-            BASE_DIR / 'seasonal_keeping' / 'templates' / 'seasonal_keeping',
+            BASE_DIR / 'box' / 'templates' / 'box',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -135,9 +132,11 @@ MEDIA_URL = env('MEDIA_URL')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'static'),
-# ]
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'frontend_part',
+]
+
 STATIC_ROOT = BASE_DIR / env('STATIC_ROOT')
 
 STATIC_URL = env('STATIC_URL')

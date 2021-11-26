@@ -66,9 +66,16 @@ python manage.py migrate
 python manage.py collectstatic --clear
 ```
 
-5. Запустить [сайт](http://127.0.0.1:8000/),
+5. Применить фикстуру
+```sh
+python manage.py loaddata ./box/fixtures/db_data.json
+```
 
-6. Осуществить переходы по страницам:
+6. Раскомментировать строчку [кода]()
+
+7. Запустить [сайт](http://127.0.0.1:8000/),
+
+8. Осуществить переходы по страницам:
     - [аренда бокса](http://127.0.0.1:8000/box-rental/),
     - [сезонное хранение](http://127.0.0.1:8000/seasonal-keeping/)
 
