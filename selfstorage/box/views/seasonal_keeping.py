@@ -10,8 +10,8 @@ from django.urls import reverse
 from random_username.generate import generate_username
 
 from box.models import (
-    Place,
-    Order,
+    Storage,
+    SeasonalKeepingOrder,
     Thing,
 )
 
@@ -30,7 +30,7 @@ def get_thing_name(request):
                                                  'password': get_random_password()
                                              })
         things_names_for_db_column = ','.join(things_names)
-        new_order = (Order.objects
+        new_order = (SeasonalKeepingOrder.objects
                      .create(things_names=things_names_for_db_column, tenant=user))
 
         user.orders.add(new_order)
@@ -87,7 +87,7 @@ def get_places(request):
             current_order = user.orders.last()
             current_order.storage_address = storage_address
             current_order.save()
-            place = Place.objects.get(address=storage_address)  # FIXME
+            place = Storage.objects.get(address=storage_address)  # FIXME
             url_for_redirect = (request
                                 .build_absolute_uri(
                                     reverse('box-cost',
@@ -106,7 +106,7 @@ def get_places(request):
 
 def display_box_cost(request, storage_id):
     if request.method == 'POST':  # нажата кнопка "Далее"
-        place = Place.objects.get(id=storage_id)
+        place = Storage.objects.get(id=storage_id)
         url_for_redirect = (request
                             .build_absolute_uri(
                                 reverse('storage-period',

@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Place
+from .models import Storage
 
 
 class NumberThingsForm(forms.Form):
@@ -17,7 +17,7 @@ class NumberThingsForm(forms.Form):
 
 class StorageAddressForm(forms.Form):
     ADDRESSES_CHOICES = [
-        (place.address, place.address) for place in Place.objects.all()
+        # (place.address, place.address) for place in Storage.objects.all()
     ]
 
     address = forms.ChoiceField(label='Адрес склада',
