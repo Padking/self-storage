@@ -5,30 +5,6 @@ from django.shortcuts import render
 import folium
 
 
-storages = [
-    {
-        'latitude': 51.682,
-        'longitude': 39.1353,
-        'name': 'Склад №1'
-    },
-    {
-        'latitude': 51.692,
-        'longitude': 39.1873,
-        'name': 'Склад №2'
-    },
-    {
-        'latitude': 51.642,
-        'longitude': 39.1813,
-        'name': 'Склад №3'
-    },
-    {
-        'latitude': 51.622,
-        'longitude': 39.2353,
-        'name': 'Склад №4'
-    }
-]
-
-
 def prepare_storage_object_info_html(storage_object):
     storage_object_info_html = """
         <h3>{storage_name}:</h3>
@@ -39,7 +15,7 @@ def prepare_storage_object_info_html(storage_object):
         <a href="#">Арендовать бокс</a>
         """.format(
             storage_name=storage_object.alias,
-            address=storage_object.place.address,
+            address=storage_object.address,
             phone_number='8(999)999-99-99',
             min_box_price=1500,
             free_boxes_count=50,
@@ -74,8 +50,8 @@ def create_map():
     for storage in storages:
         add_storage(
             folium_map,
-            storage.place.latitude,
-            storage.place.longitude,
+            storage.latitude,
+            storage.longitude,
             storage.alias,
             prepare_storage_object_info_html(storage),
             'https://www.gruzchiki-kiev.net/wp-content/uploads/2021/02/skklad.png'

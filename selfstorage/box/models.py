@@ -57,6 +57,7 @@ class Box(models.Model):
     storage = models.ForeignKey(
         Storage,
         on_delete=models.CASCADE,
+        verbose_name='склад',
         related_name='boxes'
     )
     size = models.IntegerField(
@@ -69,8 +70,9 @@ class Box(models.Model):
     )
     things = models.ManyToManyField(
         Thing,
-        blank=True,
-        related_name='assosiated_boxes'
+        verbose_name='вещи',
+        related_name='assosiated_boxes',
+        blank=True
     )
 
     def count_month_rent_price(self):
@@ -94,20 +96,22 @@ class BoxOrder(models.Model):
     box = models.ForeignKey(
         Box,
         on_delete=models.PROTECT,
+        verbose_name = 'бокс',
         related_name='orders'
     )
     box_rent_term = models.IntegerField(
-        'срок аренды бокса',
+        'срок аренды бокса в месяцах',
         validators=[MinValueValidator(1), MaxValueValidator(12)],
     )
     tenant = models.ForeignKey(
         User,
         on_delete=models.PROTECT,
+        verbose_name='арендатор',
         related_name='box_orders'
     )
 
     def __str__(self):
-        return f'{self.box} на {self.box_rent_term}'
+        return f'{self.box} на {self.box_rent_term} месяцев'
 
 
 class SeasonalKeepingOrder(models.Model):

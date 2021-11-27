@@ -1,0 +1,194 @@
+[
+  {
+    "model": "box.storage",
+    "pk": 1,
+    "fields": {
+      "address": "ул. Манчестерская, д. 7, кв. 1",
+      "latitude": 51.682,
+      "longitude": 39.1353,
+      "alias": "Склад №1",
+      "first_square_meter_price": 599,
+      "rest_square_meters_price": 150
+    }
+  },
+  {
+    "model": "box.storage",
+    "pk": 2,
+    "fields": {
+      "address": "ул. Курсанта, д.8, кв. 2",
+      "latitude": 51.692,
+      "longitude": 39.1873,
+      "alias": "Склад №2",
+      "first_square_meter_price": 300,
+      "rest_square_meters_price": 150
+    }
+  },
+  {
+    "model": "box.storage",
+    "pk": 3,
+    "fields": {
+      "address": "ул. Ленина, д.10, кв. 22",
+      "latitude": 51.642,
+      "longitude": 39.1813,
+      "alias": "Склад №3",
+      "first_square_meter_price": 800,
+      "rest_square_meters_price": 200
+    }
+  },
+  {
+    "model": "box.storage",
+    "pk": 4,
+    "fields": {
+      "address": "ул. Особая, д.5, кв. 7",
+      "latitude": 51.622,
+      "longitude": 39.2353,
+      "alias": "Склад №4",
+      "first_square_meter_price": 400,
+      "rest_square_meters_price": 180
+    }
+  },
+  {
+    "model": "box.box",
+    "pk": 1,
+    "fields": {
+      "storage": 1,
+      "size": 3,
+      "month_rent_price": 1500
+    }
+  },
+  {
+    "model": "box.box",
+    "pk": 2,
+    "fields": {
+      "storage": 2,
+      "size": 15,
+      "month_rent_price": 2500
+    }
+  },
+  {
+    "model": "box.box",
+    "pk": 3,
+    "fields": {
+      "storage": 3,
+      "size": 10,
+      "month_rent_price": 3100
+    }
+  },
+  {
+    "model": "box.box",
+    "pk": 4,
+    "fields": {
+      "storage": 4,
+      "size": 19,
+      "month_rent_price": 10000
+    }
+  },
+  {
+    "model": "box.box",
+    "pk": 5,
+    "fields": {
+      "storage": 1,
+      "size": 20,
+      "month_rent_price": 15000
+    }
+  },
+  {
+    "model": "box.box",
+    "pk": 6,
+    "fields": {
+      "storage": 2,
+      "size": 4,
+      "month_rent_price": 300
+    }
+  },
+  {
+    "model": "box.box",
+    "pk": 7,
+    "fields": {
+      "storage": 3,
+      "size": 5,
+      "month_rent_price": 1950
+    }
+  },
+  {
+    "model": "box.box",
+    "pk": 8,
+    "fields": {
+      "storage": 4,
+      "size": 13,
+      "month_rent_price": 5000
+    }
+  },
+  {
+    "model": "box.box",
+    "pk": 9,
+    "fields": {
+      "storage": 1,
+      "size": 1,
+      "month_rent_price": 200
+    }
+  },
+  {
+    "model": "box.box",
+    "pk": 10,
+    "fields": {
+      "storage": 2,
+      "size": 1,
+      "month_rent_price": 3600
+    }
+  },
+  {
+    "model": "box.boxorder",
+    "pk": 1,
+    "fields": {
+      "box": 1,
+      "box_rent_term": 1,
+      "tenant": 1
+    }
+  },
+  {
+    "model": "box.boxorder",
+    "pk": 2,
+    "fields": {
+      "box": 2,
+      "box_rent_term": 1,
+      "tenant": 1
+    }
+  },
+  {
+    "model": "box.boxorder",
+    "pk": 3,
+    "fields": {
+      "box": 3,
+      "box_rent_term": 2,
+      "tenant": 1
+    }
+  },
+  {
+    "model": "box.boxorder",
+    "pk": 4,
+    "fields": {
+      "box": 4,
+      "box_rent_term": 3,
+      "tenant": 1
+    }
+  },
+  {
+    "model": "box.boxorder",
+    "pk": 5,
+    "fields": {
+      "box": 5,
+      "box_rent_term": 4,
+      "tenant": 1
+    }
+  },
+  {
+    "model": "box.boxorder",
+    "pk": 6,
+    "fields": {
+      "box": 6,
+      "box_rent_term": 5,
+      "tenant": 1
+    }
+  }
+]
