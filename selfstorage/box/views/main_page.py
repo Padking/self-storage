@@ -1,3 +1,5 @@
+from box.models import Storage
+
 from django.shortcuts import render
 
 import folium
@@ -36,19 +38,12 @@ def prepare_storage_object_info_html(storage_object):
         <p>{free_boxes_count} из {boxes_count} боксов свободно</p>
         <a href="#">Арендовать бокс</a>
         """.format(
-            storage_name='Склад',
-            address='Воронежское шоссе, 22',
+            storage_name=storage_object.alias,
+            address=storage_object.place.address,
             phone_number='8(999)999-99-99',
             min_box_price=1500,
             free_boxes_count=50,
             boxes_count=100
-            # appeared_at=storage_object.appeared_at,
-            # disappeared_at=storage_object.disappeared_at,
-            # level=storage_object.level,
-            # health=storage_object.health,
-            # strength=storage_object.strength,
-            # defence=storage_object.defence,
-            # stamina=storage_object.stamina
         )
 
     return storage_object_info_html
@@ -74,12 +69,14 @@ def create_map():
     city_centre = [51.672, 39.1843] # Voronezh centre
 
     folium_map = folium.Map(location=city_centre, zoom_start=12)
+
+    storages = Storage.objects.all()
     for storage in storages:
         add_storage(
             folium_map,
-            storage['latitude'],
-            storage['longitude'],
-            storage['name'],
+            storage.place.latitude,
+            storage.place.longitude,
+            storage.alias,
             prepare_storage_object_info_html(storage),
             'https://www.gruzchiki-kiev.net/wp-content/uploads/2021/02/skklad.png'
         )
