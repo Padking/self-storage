@@ -1,4 +1,6 @@
 Django==3.2
+django-cleanup==5.2.0
 environs==9.3.5
-Pillow==8.1.2
 folium==0.12.1.post1
+Pillow==8.1.2
+random-username==1.0.2
