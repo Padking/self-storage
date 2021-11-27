@@ -9,7 +9,7 @@ from .models import (
 )
 
 
-@admin.register(Place, Storage, Box)
+@admin.register(Place, Storage)
 class PlaceAdmin(admin.ModelAdmin):
     pass
 
@@ -17,3 +17,7 @@ class PlaceAdmin(admin.ModelAdmin):
 @admin.register(Thing, Photo)
 class ThingsAdmin(admin.ModelAdmin):
     pass
+
+@admin.register(Box)
+class BoxAdmin(admin.ModelAdmin):
+    readonly_fields = ['month_rent_price']
