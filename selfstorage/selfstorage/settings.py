@@ -44,8 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # Custom
     'box.apps.BoxConfig',
+
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [

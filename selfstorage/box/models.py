@@ -4,6 +4,8 @@ from django.db import models
 
 from .managers import DisplayCostQuerySet
 
+from phonenumber_field.modelfields import PhoneNumberField
+
 
 class Storage(models.Model):
     address = models.TextField(
@@ -12,6 +14,7 @@ class Storage(models.Model):
     )
     longitude = models.FloatField('долгота')
     latitude = models.FloatField('широта')
+    phone = PhoneNumberField("телефон склада", blank=True, db_index=True)
     alias = models.CharField(
         'запоминающееся название',
         max_length=128,
