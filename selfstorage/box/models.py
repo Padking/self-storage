@@ -1,3 +1,5 @@
+from dateutil.relativedelta import relativedelta
+
 from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
@@ -35,25 +37,24 @@ class Storage(models.Model):
         default=150
     )
 
+    def count_min_box_price(self):
+        min_box_price = self.boxes.aggregate(models.Min('month_rent_price'))['month_rent_price__min']
+
+        return min_box_price
+
+    def count_squares_meters_count(self):
+        squares_meters_count = self.boxes.aggregate(models.Sum('size'))['size__sum']
+
+        return squares_meters_count
+
+    def count_free_squares_meters_count(self):
+        rented_squares_meters_count = self.boxes.filter(is_rented=True).aggregate(models.Sum('size'))['size__sum']
+        free_squares_meters_count = self.count_squares_meters_count() - rented_squares_meters_count
+
+        return free_squares_meters_count
+
     def __str__(self):
-        return f'{self.address}'
-
-
-class Thing(models.Model):
-    name = models.CharField('название', max_length=200)
-    image = models.ImageField('картинка')
-    min_storage_time = models.PositiveIntegerField('минимальное время хранения, сут.')
-    max_storage_time = models.PositiveIntegerField('максимальное время хранения, сут.')
-    storage_cost = models.DecimalField(
-        'стоимость за минимальное время хранения',
-        max_digits=5,
-        decimal_places=2
-    )
-
-    objects = DisplayCostQuerySet.as_manager()
-
-    def __str__(self):
-        return self.name
+        return f'{self.alias}'
 
 
 class Box(models.Model):
@@ -71,12 +72,7 @@ class Box(models.Model):
         'стоимость аренды на месяц',
         blank=True
     )
-    things = models.ManyToManyField(
-        Thing,
-        verbose_name='вещи',
-        related_name='assosiated_boxes',
-        blank=True
-    )
+    is_rented = models.BooleanField('Бокс арендован', blank=True, default=False)
 
     def count_month_rent_price(self):
         first_meter_price = self.storage.first_square_meter_price
@@ -102,10 +98,12 @@ class BoxOrder(models.Model):
         verbose_name = 'бокс',
         related_name='orders'
     )
-    box_rent_term = models.IntegerField(
+    rent_term = models.IntegerField(
         'срок аренды бокса в месяцах',
         validators=[MinValueValidator(1), MaxValueValidator(12)],
     )
+    rent_start = models.DateField('начало срока аренды бокса', auto_now_add=True)
+    rent_end = models.DateField('конец срока аренды бокса', null=True)
     tenant = models.ForeignKey(
         User,
         on_delete=models.PROTECT,
@@ -113,8 +111,35 @@ class BoxOrder(models.Model):
         related_name='box_orders'
     )
 
+    def save(self, *args, **kwargs):
+        self.box.is_rented = True
+        self.box.save()
+
+        super().save(*args, **kwargs)
+
+        self.rent_end = self.rent_start + relativedelta(months=self.rent_term)
+
+        super().save(*args, **kwargs)
+
     def __str__(self):
-        return f'{self.box} на {self.box_rent_term} месяцев'
+        return f'{self.box} на {self.rent_term} месяцев'
+
+
+class Thing(models.Model):
+    name = models.CharField('название', max_length=200)
+    image = models.ImageField('картинка')
+    min_storage_time = models.PositiveIntegerField('минимальное время хранения, сут.')
+    max_storage_time = models.PositiveIntegerField('максимальное время хранения, сут.')
+    storage_cost = models.DecimalField(
+        'стоимость за минимальное время хранения',
+        max_digits=5,
+        decimal_places=2
+    )
+
+    objects = DisplayCostQuerySet.as_manager()
+
+    def __str__(self):
+        return self.name
 
 
 class SeasonalKeepingOrder(models.Model):

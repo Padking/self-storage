@@ -57,7 +57,8 @@
     "fields": {
       "storage": 1,
       "size": 3,
-      "month_rent_price": 1500
+      "month_rent_price": 1500,
+      "is_rented": "True"
     }
   },
   {
@@ -66,7 +67,8 @@
     "fields": {
       "storage": 2,
       "size": 15,
-      "month_rent_price": 2500
+      "month_rent_price": 2500,
+      "is_rented": "True"
     }
   },
   {
@@ -75,7 +77,8 @@
     "fields": {
       "storage": 3,
       "size": 10,
-      "month_rent_price": 3100
+      "month_rent_price": 3100,
+      "is_rented": "True"
     }
   },
   {
@@ -84,7 +87,8 @@
     "fields": {
       "storage": 4,
       "size": 19,
-      "month_rent_price": 10000
+      "month_rent_price": 10000,
+      "is_rented": "True"
     }
   },
   {
@@ -93,7 +97,8 @@
     "fields": {
       "storage": 1,
       "size": 20,
-      "month_rent_price": 15000
+      "month_rent_price": 15000,
+      "is_rented": "True"
     }
   },
   {
@@ -102,7 +107,8 @@
     "fields": {
       "storage": 2,
       "size": 4,
-      "month_rent_price": 300
+      "month_rent_price": 300,
+      "is_rented": "True"
     }
   },
   {
@@ -111,7 +117,8 @@
     "fields": {
       "storage": 3,
       "size": 5,
-      "month_rent_price": 1950
+      "month_rent_price": 1950,
+      "is_rented": "False"
     }
   },
   {
@@ -120,7 +127,8 @@
     "fields": {
       "storage": 4,
       "size": 13,
-      "month_rent_price": 5000
+      "month_rent_price": 5000,
+      "is_rented": "False"
     }
   },
   {
@@ -129,7 +137,8 @@
     "fields": {
       "storage": 1,
       "size": 1,
-      "month_rent_price": 200
+      "month_rent_price": 200,
+      "is_rented": "False"
     }
   },
   {
@@ -138,7 +147,8 @@
     "fields": {
       "storage": 2,
       "size": 1,
-      "month_rent_price": 3600
+      "month_rent_price": 3600,
+      "is_rented": "False"
     }
   },
   {
@@ -146,7 +156,9 @@
     "pk": 1,
     "fields": {
       "box": 1,
-      "box_rent_term": 1,
+      "rent_term": 1,
+      "rent_start": "2021-11-02",
+      "rent_end": "2021-12-02",
       "tenant": 1
     }
   },
@@ -155,7 +167,9 @@
     "pk": 2,
     "fields": {
       "box": 2,
-      "box_rent_term": 1,
+      "rent_term": 1,
+      "rent_start": "2021-11-02",
+      "rent_end": "2021-12-02",
       "tenant": 1
     }
   },
@@ -164,7 +178,9 @@
     "pk": 3,
     "fields": {
       "box": 3,
-      "box_rent_term": 2,
+      "rent_term": 2,
+      "rent_start": "2021-11-02",
+      "rent_end": "2022-01-02",
       "tenant": 1
     }
   },
@@ -173,7 +189,9 @@
     "pk": 4,
     "fields": {
       "box": 4,
-      "box_rent_term": 3,
+      "rent_term": 3,
+      "rent_start": "2021-11-02",
+      "rent_end": "2022-02-02",
       "tenant": 1
     }
   },
@@ -182,7 +200,9 @@
     "pk": 5,
     "fields": {
       "box": 5,
-      "box_rent_term": 4,
+      "rent_term": 4,
+      "rent_start": "2021-11-02",
+      "rent_end": "2022-03-02",
       "tenant": 1
     }
   },
@@ -191,7 +211,9 @@
     "pk": 6,
     "fields": {
       "box": 6,
-      "box_rent_term": 5,
+      "rent_term": 5,
+      "rent_start": "2021-11-02",
+      "rent_end": "2022-04-02",
       "tenant": 1
     }
   }

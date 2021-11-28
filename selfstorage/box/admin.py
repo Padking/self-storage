@@ -1,10 +1,10 @@
 from django.contrib import admin
 
 from .models import (
-    Box,
     Storage,
-    Thing,
+    Box,
     BoxOrder,
+    Thing,
     SeasonalKeepingOrder
 )
 
@@ -13,15 +13,15 @@ from .models import (
 class StorageAdmin(admin.ModelAdmin):
     pass
 
-@admin.register(Thing)
-class ThingsAdmin(admin.ModelAdmin):
-    pass
-
 @admin.register(Box)
 class BoxAdmin(admin.ModelAdmin):
-    readonly_fields = ['month_rent_price']
+    readonly_fields = ['month_rent_price', 'is_rented']
 
 @admin.register(BoxOrder)
+class ThingsAdmin(admin.ModelAdmin):
+    readonly_fields = ['rent_start', 'rent_end']
+
+@admin.register(Thing)
 class ThingsAdmin(admin.ModelAdmin):
     pass
 
