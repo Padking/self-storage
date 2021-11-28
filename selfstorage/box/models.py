@@ -9,6 +9,16 @@ from .managers import DisplayCostQuerySet
 from phonenumber_field.modelfields import PhoneNumberField
 
 
+class BoxOrderQuerySet(models.QuerySet):
+
+    def delete(self, *args, **kwargs):
+        for box_order in self:
+            box_order.box.is_rented = False
+            box_order.box.save(*args, **kwargs)
+
+        super().delete(*args, **kwargs)
+
+
 class Storage(models.Model):
     address = models.TextField(
         'адрес',
@@ -42,16 +52,21 @@ class Storage(models.Model):
 
         return min_box_price
 
-    def count_squares_meters_count(self):
+    def count_squares_meters(self):
         squares_meters_count = self.boxes.aggregate(models.Sum('size'))['size__sum']
 
         return squares_meters_count
 
-    def count_free_squares_meters_count(self):
+    def count_free_squares_meters(self):
         rented_squares_meters_count = self.boxes.filter(is_rented=True).aggregate(models.Sum('size'))['size__sum']
-        free_squares_meters_count = self.count_squares_meters_count() - rented_squares_meters_count
+        free_squares_meters_count = self.count_squares_meters() - rented_squares_meters_count
 
         return free_squares_meters_count
+
+    def count_free_boxes(self):
+        free_boxes_count = self.boxes.count() - self.boxes.filter(is_rented=True).count()
+
+        return free_boxes_count
 
     def __str__(self):
         return f'{self.alias}'
@@ -111,6 +126,8 @@ class BoxOrder(models.Model):
         related_name='box_orders'
     )
 
+    objects = BoxOrderQuerySet.as_manager()
+
     def save(self, *args, **kwargs):
         self.box.is_rented = True
         self.box.save()
@@ -120,6 +137,15 @@ class BoxOrder(models.Model):
         self.rent_end = self.rent_start + relativedelta(months=self.rent_term)
 
         super().save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        self.box.is_rented = False
+        self.box.save(*args, **kwargs)
+
+        super().delete(*args, **kwargs)
+
+    # def __init__(self, *args, **kwargs):
+    #     self.queryset = self.box.filter(box.is_rented)
 
     def __str__(self):
         return f'{self.box} на {self.rent_term} месяцев'

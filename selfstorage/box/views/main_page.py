@@ -6,6 +6,7 @@ import folium
 
 
 def prepare_storage_object_info_html(storage_object):
+    box_rent_button = '<a href="#">Арендовать бокс</a>' if storage_object.count_free_boxes() > 0 else '<p><b>Все боксы заняты, выберите другой склад.</b></p>'
     storage_object_info_html = """
         <h3>{storage_name}:</h3>
         <p>{address}</p>
@@ -13,16 +14,17 @@ def prepare_storage_object_info_html(storage_object):
         <p>Аренда боксов от <b>{min_box_price} руб.</b> в мес.</p>
         <p>{free_squares_meters_count} из {squares_meters_count} м² склада свободно</p>
         <p>{free_boxes_count} из {boxes_count} боксов свободно</p>
-        <a href="#">Арендовать бокс</a>
+        {box_rent_button}
         """.format(
             storage_name=storage_object.alias,
             address=storage_object.address,
             phone_number=storage_object.phone,
             min_box_price=storage_object.count_min_box_price(),
-            squares_meters_count=storage_object.count_squares_meters_count(),
-            free_squares_meters_count=storage_object.count_free_squares_meters_count(),
-            boxes_count=100,
-            free_boxes_count=50
+            squares_meters_count=storage_object.count_squares_meters(),
+            free_squares_meters_count=storage_object.count_free_squares_meters(),
+            boxes_count=storage_object.boxes.count(),
+            free_boxes_count=storage_object.count_free_boxes(),
+            box_rent_button=box_rent_button
         )
 
     return storage_object_info_html
