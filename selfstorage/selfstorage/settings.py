@@ -135,7 +135,7 @@ MEDIA_URL = env('MEDIA_URL')
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'frontend_part',
+    BASE_DIR / 'static',
 ]
 
 STATIC_ROOT = BASE_DIR / env('STATIC_ROOT')
