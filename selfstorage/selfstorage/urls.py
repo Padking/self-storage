@@ -27,7 +27,7 @@ from box.views import (
 
 
 box_rental_extra_patterns = [
-    path('', box_rental.display_rental_form, name='box-rental'),
+    path('', box_rental.create_box_order, name='box-rental'),
 ]
 
 seasonal_keeping_extra_patterns = [

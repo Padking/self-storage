@@ -79,7 +79,7 @@ class Box(models.Model):
         verbose_name='склад',
         related_name='boxes'
     )
-    size = models.IntegerField(
+    size = models.PositiveIntegerField(
         'размер бокса в квадратных метрах',
         validators=[MinValueValidator(1), MaxValueValidator(20),]
     )
@@ -113,7 +113,7 @@ class BoxOrder(models.Model):
         verbose_name = 'бокс',
         related_name='orders'
     )
-    rent_term = models.IntegerField(
+    rent_term = models.PositiveIntegerField(
         'срок аренды бокса в месяцах',
         validators=[MinValueValidator(1), MaxValueValidator(12)],
     )
@@ -143,9 +143,6 @@ class BoxOrder(models.Model):
         self.box.save(*args, **kwargs)
 
         super().delete(*args, **kwargs)
-
-    # def __init__(self, *args, **kwargs):
-    #     self.queryset = self.box.filter(box.is_rented)
 
     def __str__(self):
         return f'{self.box} на {self.rent_term} месяцев'

@@ -1,6 +1,19 @@
 from django import forms
 
-from .models import Storage
+from box.models import Storage
+from box.models import BoxOrder
+
+
+class BoxOrderForm(forms.ModelForm):
+    class Meta:
+        model = BoxOrder
+        fields = ['box', 'rent_term', 'tenant']
+
+        widgets = {
+            'box': forms.Select(attrs={'class': 'form-control', 'id': 'exampleInputEmail1'}),
+            'rent_term': forms.NumberInput(attrs={'class': 'form-control'}),
+            'tenant': forms.Select(attrs={'class': 'form-control'}),
+        }
 
 
 class NumberThingsForm(forms.Form):

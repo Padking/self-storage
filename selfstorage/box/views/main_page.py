@@ -1,4 +1,5 @@
 from box.models import Storage
+from box.forms import BoxOrderForm
 
 from django.shortcuts import render
 
@@ -69,5 +70,6 @@ def index(request):
     folium_map = create_map()
 
     return render(request, 'index.html', context={
-        'map': folium_map._repr_html_()
+        'map': folium_map._repr_html_(),
+        'form': BoxOrderForm
     })
