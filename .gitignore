@@ -46,7 +46,7 @@ pip-delete-this-directory.txt
 local_settings.py
 # media/
 static/
-# !**/static/
+!**/static/
 *.sqlite3
 *.sqlite3-journal
 
