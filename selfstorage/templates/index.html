@@ -188,6 +188,10 @@
               <p>Цена: от <b>1200 руб/мес</b></p>
               <a href="{% static 'img/boxes/1-mini.png' %}" data-gallery="boxesGallery" class="boxes-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
               <a href="boxes-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+              <br>
+              <button type="button" class="btn btn-light text-danger" data-bs-toggle="modal" data-bs-target="#boxRentModal">
+                Арендовать бокс
+              </button>
             </div>
           </div>
 
@@ -341,6 +345,45 @@
       </div>
     </section><!-- End Contact Section -->
 
+    <!-- Box Rent Modal -->
+    <div class="modal fade" id="boxRentModal" tabindex="-1" aria-labelledby="boxRentModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="boxRentModalLabel">Аренда бокса</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form action="/box-rental/" method="post">
+              {% csrf_token %}
+              {{form}}
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-danger">Арендовать</button>
+              </div>
+            </form>
+
+            <!-- <form>
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1">
+              </div>
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form> -->
+          </div>
+
+        </div>
+      </div>
+    </div>
+
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -372,6 +415,9 @@
   <script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
   <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
   <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Auto-focus in modal window -->
+  <script src="{% static 'js/modal.js' %}"></script>
 
   <!-- Template Main JS File -->
   <script src="{% static 'js/main.js' %}"></script>
