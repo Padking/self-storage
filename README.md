@@ -68,7 +68,7 @@ python manage.py collectstatic --clear
 
 5. Применить фикстуру
 ```sh
-python manage.py loaddata ./box/fixtures/db_data.json
+python manage.py loaddata initial_db_dummy_data
 ```
 
 6. Раскомментировать строчку [кода](https://github.com/Padking/self-storage/blob/f32cbf4fa5930e150ed84a39eab8d4d61b9c1465/selfstorage/box/forms.py#L20)
